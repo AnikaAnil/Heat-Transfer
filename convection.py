@@ -1,6 +1,7 @@
 import streamlit as st
 from PIL import Image
 import os
+import matplotlib.pyplot as plt
 
 # Set page title
 st.set_page_config(page_title="HEAT TRANSFER MADE FUN")
@@ -20,7 +21,7 @@ if step == 0:
     """)
     if st.button("Next"):
         st.session_state.step = 1
-        st.rerun()
+        st.experimental_rerun()
 
 # Step 2: Specifications
 elif step == 1:
@@ -32,7 +33,7 @@ elif step == 1:
     """)
     if st.button("Next"):
         st.session_state.step = 2
-        st.rerun()
+        st.experimental_rerun()
 
 # Step 3: Theory and Animation
 elif step == 2:
@@ -52,7 +53,7 @@ elif step == 2:
 
     if st.button("Next"):
         st.session_state.step = 3
-        st.rerun()
+        st.experimental_rerun()
 
 # Step 4: Observations
 elif step == 3:
@@ -72,7 +73,7 @@ elif step == 3:
             "T_ambient": t_ambient
         }
         st.success("Observations saved successfully!")
-        st.rerun()
+        st.experimental_rerun()
 
 # Step 5: Summary
 elif step == 4:
@@ -80,6 +81,20 @@ elif step == 4:
     for key, value in st.session_state.observations.items():
         st.write(f"{key}: {value} °C")
 
+    # Plotting temperature distribution
+    st.subheader("📈 Temperature Profile along the Tube")
+    surface_temps = [st.session_state.observations[f"T{i}"] for i in range(1, 8)]
+    positions = [i for i in range(1, 8)]
+
+    fig, ax = plt.subplots()
+    ax.plot(positions, surface_temps, marker='o')
+    ax.set_title("Surface Temperature Distribution")
+    ax.set_xlabel("Position on Tube (T1 to T7)")
+    ax.set_ylabel("Temperature (°C)")
+    ax.grid(True)
+    st.pyplot(fig)
+
     if st.button("Restart Experiment"):
         st.session_state.step = 0
-        st.rerun()
+        st.experimental_rerun()
+
