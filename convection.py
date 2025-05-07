@@ -21,7 +21,6 @@ if step == 0:
     """)
     if st.button("Next"):
         st.session_state.step = 1
-        st.experimental_rerun()
 
 # Step 2: Specifications
 elif step == 1:
@@ -33,7 +32,6 @@ elif step == 1:
     """)
     if st.button("Next"):
         st.session_state.step = 2
-        st.experimental_rerun()
 
 # Step 3: Theory and Animation
 elif step == 2:
@@ -53,7 +51,6 @@ elif step == 2:
 
     if st.button("Next"):
         st.session_state.step = 3
-        st.experimental_rerun()
 
 # Step 4: Observations
 elif step == 3:
@@ -73,7 +70,6 @@ elif step == 3:
             "T_ambient": t_ambient
         }
         st.success("Observations saved successfully!")
-        st.experimental_rerun()
 
 # Step 5: Summary
 elif step == 4:
@@ -90,11 +86,11 @@ elif step == 4:
     ax.plot(positions, surface_temps, marker='o')
     ax.set_title("Surface Temperature Distribution")
     ax.set_xlabel("Position on Tube (T1 to T7)")
-    ax.set_ylabel("Temperature (°C)")
+    ax.set_ylabel("Temperature (°C")
     ax.grid(True)
     st.pyplot(fig)
 
     if st.button("Restart Experiment"):
         st.session_state.step = 0
-        st.experimental_rerun()
+
 
