@@ -1,6 +1,3 @@
-# Save the Streamlit app code as a Python file for the user to download
-
-streamlit_code = '''
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
