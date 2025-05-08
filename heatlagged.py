@@ -79,4 +79,3 @@ file_path = "/mnt/data/natural_convection_lab.py"
 with open(file_path, "w") as f:
     f.write(streamlit_code)
 
-file_path
